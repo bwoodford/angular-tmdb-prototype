@@ -1,6 +1,10 @@
 # AngularTmdb
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.0.
+Prototype for learning more about Angular by replicating the TMDB website.
+
+## NOTES:
+ - Use Node version 16 while running this project.
+ - This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.0.
 
 ## Development server
 
