@@ -1,0 +1,42 @@
+@import '~sass/variables'
+
+mat-toolbar
+    background-color: $tmdb-primary 
+
+.logo
+    width: 8em
+
+.logo-container
+    padding: 3px
+
+.toolbar-container > a
+    margin-right: 1em 
+
+.drop-button
+    color: white
+
+.toolbar-container
+    width: 70rem
+    margin: 0 auto
+
+.link-container
+    position: relative
+    display: inline-block
+    padding: .5em
+
+.hover-links-container
+    display: none
+    position: absolute
+    background-color: white
+    min-width: 160px
+    z-index: 1
+
+.link-container:hover .hover-links-container
+    display: block
+
+ul
+    padding: 0
+    margin: 0
+
+ul li
+    list-style-type: none

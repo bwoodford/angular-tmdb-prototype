@@ -1,0 +1,18 @@
+<div infiniteScroll 
+        [infiniteScrollDisabled]="disableScroll"
+        (scrolled)="onScroll()" 
+        class="list-container" 
+        fxLayout="row wrap" 
+        fxLayoutGap="24px grid">
+    <div class="list-entries" *ngFor="let entry of entries">
+        <app-card
+            [title]="entry.title" 
+            [poster_path]="entry.poster_path" 
+            [release_date]="entry.release_date"
+            [percentage]="entry.vote_average * 10">
+        </app-card>
+    </div>
+    <button *ngIf="disableScroll" (click)="disableScroll = !disableScroll" class="load-more-button" type="button">
+        Load More
+    </button>
+</div>

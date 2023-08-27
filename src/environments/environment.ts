@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  TMDB_API_KEY: "94cacb1735aebd2811fc77f6a5955585",
+  TMDB_URL_KEY: "https://api.themoviedb.org/3",
 };
 
 /*
