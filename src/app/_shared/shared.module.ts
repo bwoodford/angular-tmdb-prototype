@@ -8,9 +8,11 @@ import { CardComponent } from './components/card/card.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { PercentageComponent } from './components/percentage/percentage.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 import { InfiniteScrollComponent } from './components/infinite-scroll/infinite-scroll.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 @NgModule({
@@ -18,20 +20,23 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     WordShrinkPipe,
     CardComponent,
     PercentageComponent,
-    InfiniteScrollComponent
+    InfiniteScrollComponent,
+    NavigationComponent
   ],
   imports: [
     CommonModule,
     MatCardModule,
     FlexLayoutModule,
     InfiniteScrollModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatToolbarModule
   ],
   exports: [
     WordShrinkPipe,
     CardComponent,
     PercentageComponent,
-    InfiniteScrollComponent
+    InfiniteScrollComponent,
+    NavigationComponent
   ],
   providers:[ 
     {

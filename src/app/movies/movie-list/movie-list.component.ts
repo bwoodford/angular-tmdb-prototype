@@ -1,10 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CardDisplay } from '@app/shared/card-display';
-import { Observable } from 'rxjs';
-import { distinctUntilChanged, map, take, throttleTime } from 'rxjs/operators';
-import { Movie } from '../shared/movie.model';
-import { MovieService } from '../shared/movie.service';
-import { PopularMovies } from '../shared/popular-movies.model';
+import { CardDisplay } from '@shared/models/card-display.interface';
 
 @Component({
   selector: 'app-movie-list',

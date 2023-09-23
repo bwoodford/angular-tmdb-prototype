@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
+import { DiscoverMovieRequest } from '@movies/models/discover-movie-request.model';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,10 @@ export class TmdbService {
   
   getTopRatedMovies(page: number = 1): string {
     return `${this.TMDB_URL_KEY}/movie/top_rated?api_key=${this.TMDB_API_KEY}&page=${page}`;
+  }
+
+  getDiscoverMovies(request: DiscoverMovieRequest): string {
+    return `${this.TMDB_URL_KEY}/movie/top_rated?api_key=${this.TMDB_API_KEY}&${request.toQueryString()}`;
   }
 
 }

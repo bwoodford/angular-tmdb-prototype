@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CardDisplay } from '@app/shared/card-display';
+import { CardDisplay } from '@shared/models/card-display.interface';
 
 @Component({
   selector: 'app-infinite-scroll',

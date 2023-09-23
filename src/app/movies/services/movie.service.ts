@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { TmdbService } from '@shared/tmdb/tmdb.service';
-import { PopularMovies } from './popular-movies.model';
+import { TmdbService } from '@shared/services/tmdb.service';
+import { DiscoverMovieResponse } from '@movies/models/discover-movie-response.model';
+import { DiscoverMovieRequest } from '@movies/models/discover-movie-request.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,10 @@ export class MovieService {
     private tmdb: TmdbService
   ) { }
   
-  getPopularMovies(page: number = 1): Observable<PopularMovies> {
-    return this.http.get<any>(this.tmdb.getPopularMovies(page))
+  getMovies(page: number = 1): Observable<DiscoverMovieResponse> {
+    let request = new DiscoverMovieRequest();
+    request.page = page;
+    return this.http.get<any>(this.tmdb.getDiscoverMovies(request))
     .pipe(
       catchError(this.handleError)
     );

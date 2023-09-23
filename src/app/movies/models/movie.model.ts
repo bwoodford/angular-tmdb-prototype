@@ -1,4 +1,4 @@
-import { CardDisplay } from "@app/shared/card-display";
+import { CardDisplay } from "@shared/models/card-display.interface";
 
 /*
     Store basic Movie information

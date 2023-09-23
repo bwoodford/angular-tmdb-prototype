@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { distinctUntilChanged, map, take, throttleTime } from 'rxjs/operators';
-import { Movie } from '../shared/movie.model';
-import { MovieService } from '../shared/movie.service';
-import { PopularMovies } from '../shared/popular-movies.model';
+import { Movie } from '@movies/models/movie.model';
+import { MovieService } from '@movies/services/movie.service';
+import { DiscoverMovieResponse } from '@movies/models/discover-movie-response.model';
 
 @Component({
   selector: 'app-popular-movies',
@@ -21,8 +21,8 @@ export class PopularMoviesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getPopularMovies(this.pageNumber).pipe(
-      map((resp: PopularMovies) => this.movies = resp.results),
+    this.getPaginatedMovies(this.pageNumber).pipe(
+      map((resp: DiscoverMovieResponse) => this.movies = resp.results),
       take(1)
     ).subscribe();
   }
@@ -30,15 +30,15 @@ export class PopularMoviesComponent implements OnInit {
   ngOnDestroy(): void {
   }
   
-  getPopularMovies(page: number = 1): Observable<PopularMovies> {
+  getPaginatedMovies(page: number = 1): Observable<DiscoverMovieResponse> {
     if (page > this.pageLimit) {
-      return new Observable<PopularMovies>();
+      return new Observable<DiscoverMovieResponse>();
     }
-    return this.movieService.getPopularMovies(page);
+    return this.movieService.getMovies(page);
   }
   
   onScroll() {
-    this.getPopularMovies(this.pageNumber += 1).pipe(
+    this.getPaginatedMovies(this.pageNumber += 1).pipe(
       distinctUntilChanged(),
       throttleTime(10),
       take(1)

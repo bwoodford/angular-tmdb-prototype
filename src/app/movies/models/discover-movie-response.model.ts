@@ -1,7 +1,6 @@
-import { Movie } from "@movies/shared/movie.model";
+import { Movie } from "@movies/models/movie.model";
 
-/* Store the response for popular movies */
-export class PopularMovies {
+export class DiscoverMovieResponse {
 
     page: number;
     results: Movie[];
