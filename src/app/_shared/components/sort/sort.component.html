@@ -1,0 +1,7 @@
+<mat-form-field>
+    <mat-select (selectionChange)="onSelection($event)" [value]="default">
+        <mat-option *ngFor="let option of options | keyvalue: order" [value]="option.key">
+            {{ option.value }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>

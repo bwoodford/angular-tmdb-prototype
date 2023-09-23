@@ -1,4 +1,4 @@
-import { SortResultsBy } from "@movies/models/sort-results-by.enum";
+import { SortResultsBy } from "@movies/models/sort-results-by";
 
 export class DiscoverMovieRequest {
 

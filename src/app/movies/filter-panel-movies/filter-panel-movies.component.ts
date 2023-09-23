@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SortResultsBy } from '@movies/models/sort-results-by';
 
 @Component({
   selector: 'app-filter-panel-movies',
@@ -10,6 +11,10 @@ export class FilterPanelMoviesComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onSortResultsByChange(selection: SortResultsBy) {
+    // do something
   }
 
 }

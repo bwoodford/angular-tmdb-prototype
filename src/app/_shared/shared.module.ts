@@ -13,6 +13,8 @@ import { InfiniteScrollComponent } from './components/infinite-scroll/infinite-s
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSelectModule } from '@angular/material/select';
+import { SortComponent } from './components/sort/sort.component';
 
 
 @NgModule({
@@ -21,7 +23,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     CardComponent,
     PercentageComponent,
     InfiniteScrollComponent,
-    NavigationComponent
+    NavigationComponent,
+    SortComponent
   ],
   imports: [
     CommonModule,
@@ -29,14 +32,16 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     FlexLayoutModule,
     InfiniteScrollModule,
     MatProgressSpinnerModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatSelectModule,
   ],
   exports: [
     WordShrinkPipe,
     CardComponent,
     PercentageComponent,
     InfiniteScrollComponent,
-    NavigationComponent
+    NavigationComponent,
+    SortComponent
   ],
   providers:[ 
     {

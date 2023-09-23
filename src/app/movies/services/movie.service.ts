@@ -13,7 +13,7 @@ export class MovieService {
 
   constructor(
     private http: HttpClient,
-    private tmdb: TmdbService
+    private tmdb: TmdbService,
   ) { }
   
   getMovies(page: number = 1): Observable<DiscoverMovieResponse> {
