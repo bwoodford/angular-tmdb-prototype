@@ -27,7 +27,7 @@ import { FilterPanelMoviesComponent } from './filter-panel-movies/filter-panel-m
     MoviesRoutingModule,
     MatCardModule,
     FlexLayoutModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
   ]

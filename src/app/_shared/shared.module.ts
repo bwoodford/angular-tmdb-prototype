@@ -14,7 +14,10 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { SortComponent } from './components/sort/sort.component';
+import { FilterAccordionComponent } from './components/filter-accordion/filter-accordion.component';
+import { ProvidersComponent } from './components/providers/providers.component';
 
 
 @NgModule({
@@ -24,7 +27,9 @@ import { SortComponent } from './components/sort/sort.component';
     PercentageComponent,
     InfiniteScrollComponent,
     NavigationComponent,
-    SortComponent
+    SortComponent,
+    FilterAccordionComponent,
+    ProvidersComponent,
   ],
   imports: [
     CommonModule,
@@ -34,6 +39,7 @@ import { SortComponent } from './components/sort/sort.component';
     MatProgressSpinnerModule,
     MatToolbarModule,
     MatSelectModule,
+    MatExpansionModule,
   ],
   exports: [
     WordShrinkPipe,
@@ -41,7 +47,8 @@ import { SortComponent } from './components/sort/sort.component';
     PercentageComponent,
     InfiniteScrollComponent,
     NavigationComponent,
-    SortComponent
+    SortComponent,
+    FilterAccordionComponent,
   ],
   providers:[ 
     {
