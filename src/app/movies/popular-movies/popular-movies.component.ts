@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { distinctUntilChanged, map, take, throttleTime } from 'rxjs/operators';
 import { Movie } from '@movies/models/movie.model';
 import { MovieService } from '@movies/services/movie.service';
-import { DiscoverMovieResponse } from '@movies/models/discover-movie-response.model';
+import { PaginatedResponse } from '@app/_shared/models/paginated-response';
 
 @Component({
   selector: 'app-popular-movies',
@@ -22,7 +22,7 @@ export class PopularMoviesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPaginatedMovies(this.pageNumber).pipe(
-      map((resp: DiscoverMovieResponse) => this.movies = resp.results),
+      map((resp: PaginatedResponse<Movie>) => this.movies = resp.results),
       take(1)
     ).subscribe();
   }
@@ -30,9 +30,9 @@ export class PopularMoviesComponent implements OnInit {
   ngOnDestroy(): void {
   }
   
-  getPaginatedMovies(page: number = 1): Observable<DiscoverMovieResponse> {
+  getPaginatedMovies(page: number = 1): Observable<PaginatedResponse<Movie>> {
     if (page > this.pageLimit) {
-      return new Observable<DiscoverMovieResponse>();
+      return new Observable<PaginatedResponse<Movie>>();
     }
     return this.movieService.getMovies(page);
   }
