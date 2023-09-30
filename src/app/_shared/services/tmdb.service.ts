@@ -33,7 +33,7 @@ export class TmdbService {
   }
 
   getDiscoverMovies(request: DiscoverMovieRequest): string {
-    return `${this.TMDB_URL_KEY}/movie/top_rated?api_key=${this.TMDB_API_KEY}&${request.toQueryString()}`;
+    return `${this.TMDB_URL_KEY}/discover/movie?api_key=${this.TMDB_API_KEY}&${request.toQueryString()}`;
   }
 
   getAvailableProviderRegions(language: string = "en-US"): string {

@@ -1,5 +1,5 @@
 <div infiniteScroll 
-        [infiniteScrollDisabled]="disableScroll"
+        [infiniteScrollDisabled]="scrollDisabled"
         (scrolled)="onScroll()" 
         class="list-container" 
         fxLayout="row wrap" 
@@ -12,7 +12,7 @@
             [percentage]="entry.vote_average * 10">
         </app-card>
     </div>
-    <button *ngIf="disableScroll" (click)="disableScroll = !disableScroll" class="load-more-button" type="button">
+    <button *ngIf="scrollDisabled" (click)="scrollDisabled = !scrollDisabled" class="load-more-button" type="button">
         Load More
     </button>
 </div>

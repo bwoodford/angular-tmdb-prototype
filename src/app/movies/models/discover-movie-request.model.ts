@@ -41,7 +41,7 @@ export class DiscoverMovieRequest {
     without_watch_providers?: string;
     year?: number | null;
 
-    toQueryString() {
+    public toQueryString(): string  {
         let result = "";
         for (let key in this) {
             if (this.hasOwnProperty(key) && this[key] !== undefined) {
@@ -59,5 +59,9 @@ export class DiscoverMovieRequest {
         }
         // Remove the trailing ampersand
         return result.slice(0, -1);
+    }
+
+    public nextPage() {
+        this.page += 1;
     }
 }

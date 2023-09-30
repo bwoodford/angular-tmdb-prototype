@@ -6,19 +6,11 @@ import { CardDisplay } from '@shared/models/card-display.interface';
   templateUrl: './movie-list.component.html',
   styleUrls: ['./movie-list.component.sass']
 })
-export class MovieListComponent implements OnInit {
+export class MovieListComponent {
   
   @Input() movies: Array<CardDisplay> = new Array<CardDisplay>()
   @Output() scrolled: EventEmitter<void> =  new EventEmitter<void>()
-
-  constructor(
-  ) {}
-
-  ngOnInit(): void {}
-
-  ngOnDestroy(): void {
-  }
-  
+ 
   onScrolled(): void {
     this.scrolled.emit();
   }

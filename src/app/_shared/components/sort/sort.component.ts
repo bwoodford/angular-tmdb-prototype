@@ -9,7 +9,7 @@ import { SortResultsBy, sortResultsByDisplay, sortResultsByDisplayOrder } from '
 })
 export class SortComponent implements OnInit {
 
-  @Output() sortBy: EventEmitter<SortResultsBy> = new EventEmitter();
+  @Output() selection: EventEmitter<SortResultsBy> = new EventEmitter();
 
   readonly order = sortResultsByDisplayOrder;
   readonly options = sortResultsByDisplay;
@@ -21,6 +21,6 @@ export class SortComponent implements OnInit {
   }
 
   onSelection(event: MatSelectChange): void {
-    this.sortBy.emit(event.value as SortResultsBy);
+    this.selection.emit(event.value as SortResultsBy);
   }
 }

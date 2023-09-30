@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { CardDisplay } from '@shared/models/card-display.interface';
 
 @Component({
@@ -6,12 +6,12 @@ import { CardDisplay } from '@shared/models/card-display.interface';
   templateUrl: './infinite-scroll.component.html',
   styleUrls: ['./infinite-scroll.component.sass']
 })
-export class InfiniteScrollComponent implements OnInit {
+export class InfiniteScrollComponent implements OnInit, OnChanges {
 
   @Input() entries: CardDisplay[] = new Array<CardDisplay>();
   @Output() scrolled = new EventEmitter<null>();
 
-  disableScroll: boolean = true;
+  scrollDisabled: boolean = true;
 
   constructor() { }
 
@@ -22,4 +22,7 @@ export class InfiniteScrollComponent implements OnInit {
     this.scrolled.emit();
   }
 
+  ngOnChanges() {
+    this.scrollDisabled = true;
+  }
 }

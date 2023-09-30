@@ -19,6 +19,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { SortComponent } from './components/sort/sort.component';
 import { FilterAccordionComponent } from './components/filter-accordion/filter-accordion.component';
 import { ProvidersComponent } from './components/providers/providers.component';
+import { FilterSubmitComponent } from './components/filter-submit/filter-submit.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { ProvidersComponent } from './components/providers/providers.component';
     SortComponent,
     FilterAccordionComponent,
     ProvidersComponent,
+    FilterSubmitComponent,
   ],
   imports: [
     CommonModule,
@@ -52,6 +54,7 @@ import { ProvidersComponent } from './components/providers/providers.component';
     SortComponent,
     FilterAccordionComponent,
     ProvidersComponent,
+    FilterSubmitComponent
   ],
   providers:[ 
     {

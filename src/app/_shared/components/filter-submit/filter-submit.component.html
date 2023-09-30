@@ -1,0 +1,6 @@
+<button 
+class="search-button" 
+[disabled]="!(this.filterService.hasChanges() | async)"
+(click)="onSubmit()">
+    Search
+</button>

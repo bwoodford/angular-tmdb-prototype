@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { TmdbService } from '@shared/services/tmdb.service';
 import { DiscoverMovieRequest } from '@movies/models/discover-movie-request.model';
 import { Provider } from '@app/_shared/models/provider.model';
@@ -17,21 +17,22 @@ export class MovieService {
   constructor(
     private http: HttpClient,
     private tmdb: TmdbService,
-  ) { }
+  ) {
+  } 
   
-  getMovies(page: number = 1): Observable<PaginatedResponse<Movie>> {
-    let request = new DiscoverMovieRequest();
-    request.page = page;
+  getMovies(request: DiscoverMovieRequest): Observable<PaginatedResponse<Movie>> {
     return this.http.get<PaginatedResponse<Movie>>(this.tmdb.getDiscoverMovies(request))
     .pipe(
       catchError(this.handleError)
     );
   }
 
-  getMovieProviders(): Observable<ResultsResponse<Provider>> {
+  getProviders(): Observable<Array<Provider>> {
     return this.http.get<ResultsResponse<Provider>>(this.tmdb.getMovieProviders())
     .pipe(
       catchError(this.handleError),
+      tap(p => console.log(p.results.length)),
+      map(p => p.results)
     );
   }
 

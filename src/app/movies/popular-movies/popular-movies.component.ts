@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { distinctUntilChanged, map, take, throttleTime } from 'rxjs/operators';
+import { distinctUntilChanged, take, throttleTime } from 'rxjs/operators';
 import { Movie } from '@movies/models/movie.model';
 import { MovieService } from '@movies/services/movie.service';
 import { PaginatedResponse } from '@app/_shared/models/paginated-response';
+import { DiscoverMovieRequest } from '@movies/models/discover-movie-request.model';
+import { FilterService } from '@movies/services/filter.service';
 
 @Component({
   selector: 'app-popular-movies',
@@ -11,34 +13,34 @@ import { PaginatedResponse } from '@app/_shared/models/paginated-response';
   styleUrls: ['./popular-movies.component.sass']
 })
 export class PopularMoviesComponent implements OnInit {
-  
-  movies: Movie[] = [];
-  pageNumber: number = 1;
-  pageLimit: number = 20;
+
+  movies: Movie[];
+  request: DiscoverMovieRequest;
   
   constructor(
-    private movieService: MovieService
-  ) {}
-
-  ngOnInit(): void {
-    this.getPaginatedMovies(this.pageNumber).pipe(
-      map((resp: PaginatedResponse<Movie>) => this.movies = resp.results),
-      take(1)
-    ).subscribe();
+    private movieService: MovieService,
+    private filterService: FilterService
+  ) {
+    this.request = new DiscoverMovieRequest();
+    this.movies = [];
   }
 
-  ngOnDestroy(): void {
+  ngOnInit() {
+    this.filterService.getFilter().subscribe(event => {
+      this.request = event;
+      this.movies = [];
+      this.onScroll();
+    });
   }
-  
-  getPaginatedMovies(page: number = 1): Observable<PaginatedResponse<Movie>> {
-    if (page > this.pageLimit) {
-      return new Observable<PaginatedResponse<Movie>>();
-    }
-    return this.movieService.getMovies(page);
+
+  getPaginatedMovies(): Observable<PaginatedResponse<Movie>> {
+    let movies = this.movieService.getMovies(this.request);
+    this.request.nextPage();
+    return movies;
   }
   
   onScroll() {
-    this.getPaginatedMovies(this.pageNumber += 1).pipe(
+    this.getPaginatedMovies().pipe(
       distinctUntilChanged(),
       throttleTime(10),
       take(1)
