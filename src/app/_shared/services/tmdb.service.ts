@@ -7,8 +7,8 @@ import { DiscoverMovieRequest } from '@movies/models/discover-movie-request.mode
 })
 export class TmdbService {
   
-  TMDB_API_KEY: string = environment.TMDB_API_KEY
-  TMDB_URL_KEY: string = environment.TMDB_URL_KEY
+  readonly TMDB_API_KEY: string = environment.TMDB_API_KEY
+  readonly TMDB_URL_KEY: string = environment.TMDB_URL_KEY
     
   constructor() { }
   
@@ -34,6 +34,15 @@ export class TmdbService {
 
   getDiscoverMovies(request: DiscoverMovieRequest): string {
     return `${this.TMDB_URL_KEY}/movie/top_rated?api_key=${this.TMDB_API_KEY}&${request.toQueryString()}`;
+  }
+
+  getAvailableProviderRegions(language: string = "en-US"): string {
+    return `${this.TMDB_URL_KEY}/watch/providers/regions?api_key=${this.TMDB_API_KEY}&language=${language}`;
+  }
+
+  // TODO: encapsulate params into model
+  getMovieProviders(language: string = "en-US", watch_region: string = ""): string {
+    return `${this.TMDB_URL_KEY}/watch/providers/movie?api_key=${this.TMDB_API_KEY}&language=${language}&watch_region=${watch_region}`;
   }
 
 }

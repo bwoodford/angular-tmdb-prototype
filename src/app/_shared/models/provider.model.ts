@@ -1,9 +1,9 @@
 export class Provider {
     constructor(
-        display_priority: number,
-        logo_path: string,
-        provider_name: string,
-        provider_id: number,
+        public display_priority: number,
+        public logo_path: string,
+        public provider_name: string,
+        public provider_id: string,
     ) {
     }
 }

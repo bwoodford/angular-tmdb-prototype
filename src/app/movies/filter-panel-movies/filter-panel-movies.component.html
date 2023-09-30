@@ -1,9 +1,12 @@
 <app-filter-accordion [title]="'Sort'">
-    <app-sort (sortBy)="onSortResultsByChange($event)">
+    <app-sort (selection)="onSortResultsBySelection($event)">
     </app-sort>
 </app-filter-accordion>
 
 <app-filter-accordion [title]="'Where to Watch'">
+
+    <app-providers [providers]="providers" (selections)="onProviderSelections($event)">
+    </app-providers>
 </app-filter-accordion>
 
 <app-filter-accordion [title]="'Filters'">

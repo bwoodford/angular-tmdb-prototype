@@ -1,0 +1,16 @@
+<ul class="provider-list">
+    <li *ngFor="let provider of providers" [class.selected]="uniqueSelections.has(provider.provider_id)">
+        <a matTooltip="{{provider.provider_name}}" 
+            [matTooltipPosition]="'above'" 
+            class="provider-link" 
+            href="#" 
+            (click)="providerClick($event, provider.provider_id)">
+
+            <img src="https://image.tmdb.org/t/p/original/{{provider.logo_path}}" 
+                    alt="{{provider.provider_name}}" 
+                    class="provider-logo"
+                    height="50">
+            <span class="bi bi-check-lg provider-checkmark"></span>
+        </a>
+    </li>
+</ul>
