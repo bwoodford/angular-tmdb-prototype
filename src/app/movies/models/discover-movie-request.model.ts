@@ -39,7 +39,7 @@ export class DiscoverMovieRequest {
     without_genres?: string;
     without_keywords?: string;
     without_watch_providers?: string;
-    year?: number | null;
+    year?: number;
 
     public toQueryString(): string  {
         let result = "";
