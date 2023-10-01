@@ -21,13 +21,7 @@ export class ProvidersComponent implements OnInit {
 
   providerClick(event: Event, id: string): void {
     event.preventDefault();
-
-    if (this.uniqueSelections.has(id)) {
-      this.uniqueSelections.delete(id);
-    } else {
-      this.uniqueSelections.add(id);
-    }
-
+    this.uniqueSelections.has(id) ? this.uniqueSelections.delete(id) : this.uniqueSelections.add(id);
     this.selections.emit(Array.from(this.uniqueSelections.values()));
   }
 
