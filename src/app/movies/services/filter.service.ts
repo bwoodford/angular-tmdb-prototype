@@ -13,6 +13,9 @@ export class FilterService {
 
   private filterChanges = new DiscoverMovieRequest();
 
+  private readonly OR = "|";
+  private readonly AND = "&";
+
   getFilter(): Observable<DiscoverMovieRequest> {
     return this.filterSubject.asObservable();
   }
@@ -23,6 +26,11 @@ export class FilterService {
 
   setSortByPopularity(sort: SortResultsBy) {
     this.filterChanges.sort_by = sort;
+    this.notifyHasChanged();
+  }
+
+  setProviders(providers: Array<string>) {
+    this.filterChanges.with_watch_providers = providers.join(this.OR);
     this.notifyHasChanged();
   }
 

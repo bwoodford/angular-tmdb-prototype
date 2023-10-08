@@ -1,8 +1,10 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Provider } from '@app/_shared/models/provider.model';
+import { Provider } from '@app/_shared/models/provider.interface';
 import { SortResultsBy } from '@movies/models/sort-results-by';
 import { MovieService } from '@movies/services/movie.service';
 import { FilterService } from '@movies/services/filter.service';
+import { Country } from '@app/_shared/models/country.interface';
+import { TmdbService } from '@app/_shared/services/tmdb.service';
 
 @Component({
   selector: 'app-filter-panel-movies',
@@ -22,9 +24,7 @@ export class FilterPanelMoviesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.movieService.getProviders().subscribe(resp => {
-      this.providers = resp;
-    });
+    this.setProviders();
   }
 
   onSortResultsBySelection(selection: SortResultsBy) {
@@ -32,7 +32,20 @@ export class FilterPanelMoviesComponent implements OnInit {
   }
 
   onProviderSelections(selections: Array<string>) {
-    //this.filterService.setProviders(selections)
+    this.filterService.setProviders(selections);
+  }
+
+  onCountrySelected(selection: Country) {
+    this.setProviders(selection);
+  }
+
+  setProviders(selectedCountry?: Country) {
+    this.movieService
+      .getProviders(selectedCountry)
+      .subscribe(get => {
+        console.log(get);
+        this.providers = get;
+    });
   }
 
   onSubmit() {

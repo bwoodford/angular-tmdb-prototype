@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Provider } from '@shared/models/provider.model';
+import { Provider } from '@shared/models/provider.interface';
 
 @Component({
   selector: 'app-providers',

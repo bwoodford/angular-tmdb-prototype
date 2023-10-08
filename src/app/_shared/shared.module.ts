@@ -16,10 +16,14 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { SortComponent } from './components/sort/sort.component';
 import { FilterAccordionComponent } from './components/filter-accordion/filter-accordion.component';
 import { ProvidersComponent } from './components/providers/providers.component';
 import { FilterSubmitComponent } from './components/filter-submit/filter-submit.component';
+import { CountrySelectorComponent } from './components/country-selector/country-selector.component';
+import { CountryFilterPipe } from './pipes/country-filter/country-filter.pipe';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -33,6 +37,8 @@ import { FilterSubmitComponent } from './components/filter-submit/filter-submit.
     FilterAccordionComponent,
     ProvidersComponent,
     FilterSubmitComponent,
+    CountrySelectorComponent,
+    CountryFilterPipe,
   ],
   imports: [
     CommonModule,
@@ -43,7 +49,9 @@ import { FilterSubmitComponent } from './components/filter-submit/filter-submit.
     MatToolbarModule,
     MatSelectModule,
     MatExpansionModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatAutocompleteModule,
+    FormsModule
   ],
   exports: [
     WordShrinkPipe,
@@ -54,7 +62,8 @@ import { FilterSubmitComponent } from './components/filter-submit/filter-submit.
     SortComponent,
     FilterAccordionComponent,
     ProvidersComponent,
-    FilterSubmitComponent
+    FilterSubmitComponent,
+    CountrySelectorComponent
   ],
   providers:[ 
     {

@@ -1,0 +1,6 @@
+<mat-select (selectionChange)="onOptionSelected($event)" [value]="defaultCountry">
+    <input class="sticky-option" [(ngModel)]="searchText" placeholder="Country">
+    <mat-option *ngFor="let country of countries | countryFilter: searchText" [value]="country">
+        {{country.english_name}}
+    </mat-option>
+</mat-select>

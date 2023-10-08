@@ -4,6 +4,7 @@
 </app-filter-accordion>
 
 <app-filter-accordion [title]="'Where to Watch'">
+    <app-country-selector (selection)="onCountrySelected($event)"></app-country-selector>
 
     <app-providers [providers]="providers" (selections)="onProviderSelections($event)">
     </app-providers>

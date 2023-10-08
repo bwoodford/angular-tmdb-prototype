@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { distinctUntilChanged, take, throttleTime } from 'rxjs/operators';
 import { Movie } from '@movies/models/movie.model';
 import { MovieService } from '@movies/services/movie.service';
-import { PaginatedResponse } from '@app/_shared/models/paginated-response';
+import { PaginatedResponse } from '@app/_shared/models/paginated-response.interface';
 import { DiscoverMovieRequest } from '@movies/models/discover-movie-request.model';
 import { FilterService } from '@movies/services/filter.service';
 
