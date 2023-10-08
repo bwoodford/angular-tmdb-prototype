@@ -6,6 +6,7 @@ import { AppComponent } from '@app/app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '@shared/shared.module';
+import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 
 
 @NgModule({
@@ -18,9 +19,10 @@ import { SharedModule } from '@shared/shared.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatMomentDateModule
   ],
   providers: [
-    
+    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true }}
   ],
   bootstrap: [AppComponent]
 })
