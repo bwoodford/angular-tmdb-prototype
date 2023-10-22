@@ -24,7 +24,8 @@ import { FilterSubmitComponent } from './components/filter-submit/filter-submit.
 import { CountrySelectorComponent } from './components/country-selector/country-selector.component';
 import { CountryFilterPipe } from './pipes/country-filter/country-filter.pipe';
 import { FormsModule } from '@angular/forms';
-
+import { DateFromToComponent } from './components/date-from-to/date-from-to.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { FormsModule } from '@angular/forms';
     FilterSubmitComponent,
     CountrySelectorComponent,
     CountryFilterPipe,
+    DateFromToComponent,
   ],
   imports: [
     CommonModule,
@@ -51,7 +53,8 @@ import { FormsModule } from '@angular/forms';
     MatExpansionModule,
     MatTooltipModule,
     MatAutocompleteModule,
-    FormsModule
+    FormsModule,
+    MatDatepickerModule
   ],
   exports: [
     WordShrinkPipe,
@@ -63,7 +66,8 @@ import { FormsModule } from '@angular/forms';
     FilterAccordionComponent,
     ProvidersComponent,
     FilterSubmitComponent,
-    CountrySelectorComponent
+    CountrySelectorComponent,
+    DateFromToComponent
   ],
   providers:[ 
     {

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DiscoverMovieRequest } from '@movies/models/discover-movie-request.model';
 import { SortResultsBy } from '@movies/models/sort-results-by';
+import { DateType } from '@app/_shared/models/date-type.enum';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +36,18 @@ export class FilterService {
     this.notifyHasChanged();
   }
 
+  setReleaseDates(dates: [Date?, Date?]) {
+    if (dates[DateType.From]) {
+      this.filterChanges.release_date_gte = moment(dates[DateType.From]).format("YYYY-MM-DD");
+    }
+
+    if (dates[DateType.To]) {
+      this.filterChanges.release_date_lte = moment(dates[DateType.To]).format("YYYY-MM-DD");
+    }
+
+    this.notifyHasChanged();
+  }
+
   submitFilter() {
     this.filterSubject.next(this.filterChanges);
     this.filterChanges = new DiscoverMovieRequest();
@@ -42,5 +56,4 @@ export class FilterService {
   private notifyHasChanged() {
     this.hasChangedSubject.next(true);
   }
-
 }

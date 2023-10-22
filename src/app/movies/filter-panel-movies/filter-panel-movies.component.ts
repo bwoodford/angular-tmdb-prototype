@@ -39,11 +39,14 @@ export class FilterPanelMoviesComponent implements OnInit {
     this.setProviders(selection);
   }
 
+  onReleaseDatesSelected(selections: [Date?, Date?]) {
+    this.filterService.setReleaseDates(selections);
+  }
+
   setProviders(selectedCountry?: Country) {
     this.movieService
       .getProviders(selectedCountry)
       .subscribe(get => {
-        console.log(get);
         this.providers = get;
     });
   }

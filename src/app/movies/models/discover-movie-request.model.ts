@@ -11,11 +11,11 @@ export class DiscoverMovieRequest {
     language: string = "en-US";
     page: number = 1;
     primary_release_year?: number;
-    primary_release_date_gte?: Date;
-    primary_release_date_lte?: Date;
+    primary_release_date_gte?: string;
+    primary_release_date_lte?: string;
     region?: string;
-    release_date_gte?: Date;
-    release_date_lte?: Date;
+    release_date_gte?: string;
+    release_date_lte?: string;
     sort_by: string = SortResultsBy.PopularityDescending;
     vote_average_gte?: number;
     vote_average_lte?: number;
