@@ -4,6 +4,7 @@ import { DiscoverMovieRequest } from '@movies/models/discover-movie-request.mode
 import { SortResultsBy } from '@movies/models/sort-results-by';
 import { DateType } from '@app/_shared/models/date-type.enum';
 import * as moment from 'moment';
+import { BaseType } from '@app/_shared/models/base-type.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +46,11 @@ export class FilterService {
       this.filterChanges.release_date_lte = moment(dates[DateType.To]).format("YYYY-MM-DD");
     }
 
+    this.notifyHasChanged();
+  }
+
+  setGenres(genres: Array<BaseType>) {
+    this.filterChanges.with_genres = genres.map(g => g.id).join(",");
     this.notifyHasChanged();
   }
 

@@ -26,6 +26,8 @@ import { CountryFilterPipe } from './pipes/country-filter/country-filter.pipe';
 import { FormsModule } from '@angular/forms';
 import { DateFromToComponent } from './components/date-from-to/date-from-to.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { ChipListComponent } from './components/chip-list/chip-list.component';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     CountrySelectorComponent,
     CountryFilterPipe,
     DateFromToComponent,
+    ChipListComponent,
   ],
   imports: [
     CommonModule,
@@ -54,7 +57,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatTooltipModule,
     MatAutocompleteModule,
     FormsModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatChipsModule
   ],
   exports: [
     WordShrinkPipe,
@@ -67,7 +71,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     ProvidersComponent,
     FilterSubmitComponent,
     CountrySelectorComponent,
-    DateFromToComponent
+    DateFromToComponent,
+    ChipListComponent
   ],
   providers:[ 
     {

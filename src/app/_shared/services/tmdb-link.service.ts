@@ -45,8 +45,12 @@ export class TmdbLinkService {
     return `${this.TMDB_URL_KEY}/watch/providers/movie?api_key=${this.TMDB_API_KEY}&language=${language}&watch_region=${watch_region}`;
   }
 
-  getCountries(): string {
-    return `${this.TMDB_URL_KEY}/configuration/countries?api_key=${this.TMDB_API_KEY}`;
+  getCountries(language: string = "en-US"): string {
+    return `${this.TMDB_URL_KEY}/configuration/countries?api_key=${this.TMDB_API_KEY}&language=${language}`;
+  }
+
+  getMovieGenres(language: string = "en-US"): string {
+    return `${this.TMDB_URL_KEY}/genre/movie/list?api_key=${this.TMDB_API_KEY}&language=${language}`;
   }
 
 }

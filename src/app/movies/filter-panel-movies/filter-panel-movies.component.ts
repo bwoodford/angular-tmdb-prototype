@@ -5,6 +5,7 @@ import { MovieService } from '@movies/services/movie.service';
 import { FilterService } from '@movies/services/filter.service';
 import { Country } from '@app/_shared/models/country.interface';
 import { TmdbService } from '@app/_shared/services/tmdb.service';
+import { BaseType } from '@app/_shared/models/base-type.interface';
 
 @Component({
   selector: 'app-filter-panel-movies',
@@ -16,6 +17,7 @@ export class FilterPanelMoviesComponent implements OnInit {
   @Output() submit = new EventEmitter<void>();
 
   providers: Array<Provider> = new Array<Provider>();
+  genres: Array<BaseType> = new Array<BaseType>();
 
   constructor(
     private movieService: MovieService,
@@ -25,6 +27,7 @@ export class FilterPanelMoviesComponent implements OnInit {
 
   ngOnInit() {
     this.setProviders();
+    this.setGenres();
   }
 
   onSortResultsBySelection(selection: SortResultsBy) {
@@ -43,6 +46,10 @@ export class FilterPanelMoviesComponent implements OnInit {
     this.filterService.setReleaseDates(selections);
   }
 
+  onGenreSelections(selections: Array<BaseType>) {
+    this.filterService.setGenres(selections);
+  }
+
   setProviders(selectedCountry?: Country) {
     this.movieService
       .getProviders(selectedCountry)
@@ -50,6 +57,15 @@ export class FilterPanelMoviesComponent implements OnInit {
         this.providers = get;
     });
   }
+
+  setGenres() {
+    this.movieService
+      .getGenres()
+      .subscribe(get => {
+        this.genres = get;
+    });
+  }
+
 
   onSubmit() {
     this.filterService.submitFilter();

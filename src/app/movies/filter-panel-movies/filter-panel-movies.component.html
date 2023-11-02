@@ -12,6 +12,8 @@
 
 <app-filter-accordion [title]="'Filters'">
     <app-date-from-to (selectedDates)="onReleaseDatesSelected($event)"></app-date-from-to>
+
+    <app-chip-list [chips]="genres" (selections)="onGenreSelections($event)"></app-chip-list>
 </app-filter-accordion>
 
 <app-filter-submit (submit)="onSubmit()">

@@ -9,6 +9,8 @@ import { ResultsResponse } from '@app/_shared/models/results-response.interface'
 import { PaginatedResponse } from '@app/_shared/models/paginated-response.interface';
 import { Movie } from '@movies/models/movie.model';
 import { Country } from '@app/_shared/models/country.interface';
+import { Genres } from '@app/_shared/models/genres.interface';
+import { BaseType } from '@app/_shared/models/base-type.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +35,14 @@ export class MovieService {
     .pipe(
       catchError(this.handleError),
       map(p => p.results)
+    );
+  }
+
+  getGenres(language: string = "en"): Observable<BaseType[]> {
+    return this.http.get<Genres>(this.tmdbLinks.getMovieGenres())
+    .pipe(
+      catchError(this.handleError),
+      map(p => p.genres)
     );
   }
  
