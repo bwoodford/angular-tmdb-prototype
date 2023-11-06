@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { distinctUntilChanged, take, throttleTime } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { distinctUntilChanged, take, takeUntil, throttleTime } from 'rxjs/operators';
 import { Movie } from '@movies/models/movie.model';
 import { MovieService } from '@movies/services/movie.service';
 import { PaginatedResponse } from '@app/_shared/models/paginated-response.interface';
@@ -14,23 +14,29 @@ import { FilterService } from '@movies/services/filter.service';
 })
 export class PopularMoviesComponent implements OnInit {
 
-  movies: Movie[];
-  request: DiscoverMovieRequest;
+  $unsub = new Subject<void>();
+  movies = new Array<Movie>();
+  request = new DiscoverMovieRequest;
   
   constructor(
     private movieService: MovieService,
     private filterService: FilterService
   ) {
-    this.request = new DiscoverMovieRequest();
-    this.movies = [];
   }
 
   ngOnInit() {
-    this.filterService.getFilter().subscribe(event => {
-      this.request = event;
-      this.movies = [];
-      this.onScroll();
-    });
+    this.filterService.getFilter()
+      .pipe(takeUntil(this.$unsub))
+      .subscribe(event => {
+        this.request = event;
+        this.movies = [];
+        this.onScroll();
+      });
+  }
+
+  ngOnDestroy() {
+    this.$unsub.next();
+    this.$unsub.complete();
   }
 
   getPaginatedMovies(): Observable<PaginatedResponse<Movie>> {
@@ -41,6 +47,7 @@ export class PopularMoviesComponent implements OnInit {
   
   onScroll() {
     this.getPaginatedMovies().pipe(
+      takeUntil(this.$unsub),
       distinctUntilChanged(),
       throttleTime(10),
       take(1)

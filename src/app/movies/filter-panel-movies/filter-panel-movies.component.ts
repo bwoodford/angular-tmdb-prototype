@@ -5,7 +5,8 @@ import { MovieService } from '@movies/services/movie.service';
 import { FilterService } from '@movies/services/filter.service';
 import { Country } from '@app/_shared/models/country.interface';
 import { BaseType } from '@app/_shared/models/base-type.interface';
-import { map } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-filter-panel-movies',
@@ -16,9 +17,11 @@ export class FilterPanelMoviesComponent implements OnInit {
 
   @Output() submit = new EventEmitter<void>();
 
-  providers: Array<Provider> = new Array<Provider>();
-  genres: Array<BaseType> = new Array<BaseType>();
-  certifications: Array<BaseType> = new Array<BaseType>();
+  $unsub = new Subject<void>();
+
+  providers = new Array<Provider>();
+  genres = new Array<BaseType>();
+  certifications = new Array<BaseType>();
 
   constructor(
     private movieService: MovieService,
@@ -30,6 +33,11 @@ export class FilterPanelMoviesComponent implements OnInit {
     this.setProviders();
     this.setGenres();
     this.setCertifications();
+  }
+
+  ngOnDestroy() {
+    this.$unsub.next();
+    this.$unsub.complete();
   }
 
   onSortResultsBySelection(selection: SortResultsBy) {
@@ -59,6 +67,7 @@ export class FilterPanelMoviesComponent implements OnInit {
   setProviders(selectedCountry?: Country) {
     this.movieService
       .getProviders(selectedCountry)
+      .pipe(takeUntil(this.$unsub))
       .subscribe(get => {
         this.providers = get;
     });
@@ -67,6 +76,7 @@ export class FilterPanelMoviesComponent implements OnInit {
   setGenres() {
     this.movieService
       .getGenres()
+      .pipe(takeUntil(this.$unsub))
       .subscribe(get => {
         this.genres = get;
     });
@@ -76,6 +86,7 @@ export class FilterPanelMoviesComponent implements OnInit {
     this.movieService
       .getCertifications()
       .pipe(
+        takeUntil(this.$unsub),
         map(certs => certs.map(cert => cert.toBaseClass()))
       )
       .subscribe(get => {
