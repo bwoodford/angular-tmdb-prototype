@@ -4,8 +4,8 @@ import { SortResultsBy } from '@movies/models/sort-results-by';
 import { MovieService } from '@movies/services/movie.service';
 import { FilterService } from '@movies/services/filter.service';
 import { Country } from '@app/_shared/models/country.interface';
-import { TmdbService } from '@app/_shared/services/tmdb.service';
 import { BaseType } from '@app/_shared/models/base-type.interface';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-filter-panel-movies',
@@ -18,6 +18,7 @@ export class FilterPanelMoviesComponent implements OnInit {
 
   providers: Array<Provider> = new Array<Provider>();
   genres: Array<BaseType> = new Array<BaseType>();
+  certifications: Array<BaseType> = new Array<BaseType>();
 
   constructor(
     private movieService: MovieService,
@@ -28,6 +29,7 @@ export class FilterPanelMoviesComponent implements OnInit {
   ngOnInit() {
     this.setProviders();
     this.setGenres();
+    this.setCertifications();
   }
 
   onSortResultsBySelection(selection: SortResultsBy) {
@@ -50,6 +52,10 @@ export class FilterPanelMoviesComponent implements OnInit {
     this.filterService.setGenres(selections);
   }
 
+  onCertificationSelections(selections: Array<BaseType>) {
+    this.filterService.setCertifications(selections);
+  }
+
   setProviders(selectedCountry?: Country) {
     this.movieService
       .getProviders(selectedCountry)
@@ -66,6 +72,16 @@ export class FilterPanelMoviesComponent implements OnInit {
     });
   }
 
+  setCertifications() {
+    this.movieService
+      .getCertifications()
+      .pipe(
+        map(certs => certs.map(cert => cert.toBaseClass()))
+      )
+      .subscribe(get => {
+        this.certifications = get;
+    });
+  }
 
   onSubmit() {
     this.filterService.submitFilter();

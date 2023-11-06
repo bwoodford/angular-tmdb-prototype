@@ -53,6 +53,9 @@ export class TmdbLinkService {
     return `${this.TMDB_URL_KEY}/genre/movie/list?api_key=${this.TMDB_API_KEY}&language=${language}`;
   }
 
+  getMovieCertifications(): string {
+    return `${this.TMDB_URL_KEY}/certification/movie/list?api_key=${this.TMDB_API_KEY}`;
+  }
 }
 
 export enum MediaTypes {

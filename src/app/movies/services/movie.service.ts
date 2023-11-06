@@ -9,8 +9,9 @@ import { ResultsResponse } from '@app/_shared/models/results-response.interface'
 import { PaginatedResponse } from '@app/_shared/models/paginated-response.interface';
 import { Movie } from '@movies/models/movie.model';
 import { Country } from '@app/_shared/models/country.interface';
-import { Genres } from '@app/_shared/models/genres.interface';
-import { BaseType } from '@app/_shared/models/base-type.interface';
+import { Genre, Genres } from '@app/_shared/models/genres.interface';
+import { Certification, Certifications } from '@app/_shared/models/certifications.interface';
+import { BaseClass } from '@app/_shared/models/base-type.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -38,11 +39,22 @@ export class MovieService {
     );
   }
 
-  getGenres(language: string = "en"): Observable<BaseType[]> {
+  getGenres(): Observable<Genre[]> {
     return this.http.get<Genres>(this.tmdbLinks.getMovieGenres())
     .pipe(
       catchError(this.handleError),
       map(p => p.genres)
+    );
+  }
+
+  getCertifications(): Observable<Certification[]> {
+    return this.http.get<Certifications>(this.tmdbLinks.getMovieCertifications())
+    .pipe(
+      catchError(this.handleError),
+      // Getting the US certifications by default
+      map(({ certifications }) => certifications.US.map(us =>
+        new Certification(us.certification, us.meaning, us.order)
+      )),
     );
   }
  

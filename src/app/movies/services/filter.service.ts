@@ -54,6 +54,11 @@ export class FilterService {
     this.notifyHasChanged();
   }
 
+  setCertifications(certifications: Array<BaseType>) {
+    this.filterChanges.certification = certifications.map(g => g.name).join(this.OR);
+    this.notifyHasChanged();
+  }
+
   submitFilter() {
     this.filterSubject.next(this.filterChanges);
     this.filterChanges = new DiscoverMovieRequest();

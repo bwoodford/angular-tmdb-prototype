@@ -11,9 +11,22 @@
 </app-filter-accordion>
 
 <app-filter-accordion [title]="'Filters'">
-    <app-date-from-to (selectedDates)="onReleaseDatesSelected($event)"></app-date-from-to>
+    <div>
+        <span>Release Dates</span>
+        <app-date-from-to (selectedDates)="onReleaseDatesSelected($event)"></app-date-from-to>
+    </div>
 
-    <app-chip-list [chips]="genres" (selections)="onGenreSelections($event)"></app-chip-list>
+    <div>
+        <span>Genres</span>
+        <app-chip-list [chips]="genres" (selections)="onGenreSelections($event)"></app-chip-list>
+    </div>
+
+    <div>
+        <span>Certification</span>
+        <app-chip-list [chips]="certifications" (selections)="onCertificationSelections($event)"></app-chip-list>
+    </div>
+
+
 </app-filter-accordion>
 
 <app-filter-submit (submit)="onSubmit()">
